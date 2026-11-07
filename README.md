@@ -8,7 +8,7 @@ A single-file, mobile-first study page for the Cisco **CCNA 200-301 v1.1** exam.
 
 | Tab | Contents |
 |---|---|
-| **Map** | Overview panels for every blueprint objective, with diagrams and comparison tables. Every *configure/verify* objective has a complete config block. |
+| **Map** | Overview panels for every blueprint objective, with 50 topology/flow diagrams and comparison tables. 24 complete configure + verify blocks: every *configure* objective, plus HSRP, management access, DNS client, SNMP v2c/v3, syslog, TFTP/FTP/IOS upgrade and AAA (TACACS+/RADIUS, 802.1X). |
 | **Cards** | 332 flip cards, each with a short explanation and its source. |
 | **Quiz** | 330 scenario questions, including 36 exhibits with CLI output, 9 matching and ordering questions, and an explanation for every option. |
 | **Numbers** | Ports, timers, defaults, administrative distances, priorities and limits, grouped by objective. |
