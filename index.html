@@ -122,22 +122,45 @@ nav .in{flex-wrap:nowrap}
 .btns .reset{flex:1}
 .btns .reset{color:var(--ink)}
 
+/* release 4.5: compact layout */
+header .slim{display:none;font:700 15px 'Space Grotesk';color:var(--ink)}
+header .slim span{color:var(--c1)} header .slim small{font:500 12px Inter;color:var(--mute)}
+body:not([data-v="map"]) header{padding:8px 16px 6px}
+body:not([data-v="map"]) header .hfull{display:none}
+body:not([data-v="map"]) header .slim{display:block}
+nav .sh{display:none}
+.selrow{display:none;gap:8px;margin-bottom:10px}
+.selrow select{flex:1;min-width:0;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:9px 10px;font:600 14px Inter;appearance:auto}
+@media (max-width:600px){
+  nav .in{gap:2px;padding:6px 6px;overflow-x:visible}
+  nav button{min-width:0;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 2px;font:600 11px Inter}
+  nav .ic{font-size:17px;line-height:1.1}
+  nav .lg{display:none} nav .sh{display:inline}
+  #v-quiz .filters,#v-cards .filters{display:none!important}
+  .selrow{display:flex}
+}
+/* release 4.5.1: keep the scrollbar space reserved so tabs don't shift sideways on desktop */
+html{scrollbar-gutter:stable}
+
 </style>
 </head>
-<body>
+<body data-v="map">
 <header>
+  <div class="slim">CCNA 200-301 <span>v1.1</span> · Last Minute <small>· r4.5.1</small></div>
+  <div class="hfull">
   <h1>CCNA <span>200-301 v1.1</span> · Last Minute</h1>
   <div class="sub">Blueprint-aligned: diagrams, trigger cards, scenario quiz, numbers</div>
   <div class="sub" style="color:var(--warn,#f0b45a);font-weight:600">For CCNA 200-301 v1.1 only · last date to test v1.1: 2 Feb 2027</div>
-  <div class="sub">Study map release 4.4.1 · 11 Nov 2026 · <a href="#" id="clink" style="color:inherit;text-decoration:underline">changelog</a></div>
+  <div class="sub">Study map release 4.5.1 · 11 Nov 2026 · <a href="#" id="clink" style="color:inherit;text-decoration:underline">changelog</a></div>
+  </div>
 </header>
 <nav><div class="in">
-  <button data-v="map" class="on">🗺️ Overview</button>
-  <button data-v="cards">🃏 Trigger cards</button>
-  <button data-v="quiz">🎯 Scenario quiz</button>
-  <button data-v="nums">🔢 Numbers</button>
-  <button data-v="day">⏱ Exam day</button>
-  <button data-v="find">🔍 Search</button>
+  <button data-v="map" class="on"><span class="ic">🗺️</span> <span class="lg">Overview</span><span class="sh">Map</span></button>
+  <button data-v="cards"><span class="ic">🃏</span> <span class="lg">Trigger cards</span><span class="sh">Cards</span></button>
+  <button data-v="quiz"><span class="ic">🎯</span> <span class="lg">Scenario quiz</span><span class="sh">Quiz</span></button>
+  <button data-v="nums"><span class="ic">🔢</span> <span class="lg">Numbers</span><span class="sh">Numbers</span></button>
+  <button data-v="day"><span class="ic">⏱</span> <span class="lg">Exam day</span><span class="sh">Exam</span></button>
+  <button data-v="find"><span class="ic">🔍</span> <span class="lg">Search</span><span class="sh">Search</span></button>
 </div></nav>
 <main>
 <section class="view on" id="v-map">
@@ -948,13 +971,15 @@ Client: gets an IP from the WLAN's VLAN</pre></div>
 
 <section class="view" id="v-cards">
   <div class="filters" id="filters"></div>
-  <div class="prog"><span id="pinfo"></span><span id="pstat"></span></div>
+  <div class="selrow" id="csel"></div>
+  <div class="prog"><span id="pinfo"></span><span><span id="pstat"></span><button class="reset" id="crs" style="padding:3px 10px;font-size:12px;margin:0 0 0 8px;width:auto;white-space:nowrap">↺ Reset</button></span></div>
   <div id="deck"></div>
 </section>
 <section class="view qz" id="v-quiz">
   <div class="filters" id="qmodes"></div>
   <div class="filters" id="qfilters"></div>
-  <div class="prog"><span id="qhint"></span><span class="score" id="qscore">0 / 0</span></div>
+  <div class="selrow" id="qsel"></div>
+  <div class="prog"><span id="qhint"></span><span><span class="score" id="qscore">0 / 0</span><button class="reset" id="qwc" style="padding:3px 10px;font-size:12px;margin:0 0 0 8px;width:auto;white-space:nowrap;display:none">Clear list</button></span></div>
   <div class="sec" id="qbox"></div>
 </section>
 <section class="view" id="v-nums">
@@ -1203,8 +1228,12 @@ Client: gets an IP from the WLAN's VLAN</pre></div>
     <div style="display:flex;gap:8px;margin-top:8px"><button class="reset" id="bkex" style="flex:1">Export</button><button class="reset" id="bkim" style="flex:1">Import</button></div>
     <p class="why" id="bkmsg" style="margin-top:6px"></p>
   </details>
-  <details class="sec" id="changelog"><summary>📝 Changelog <span class="src">release 4.4.1</span></summary>
+  <details class="sec" id="changelog"><summary>📝 Changelog <span class="src">release 4.5.1</span></summary>
     <div class="lsa">
+      <b>Release 4.5.1<br>11 Nov 2026</b><span>Desktop: the page no longer shifts sideways when switching between long tabs (Overview, Numbers, Exam day) and short ones (Cards, Quiz, Search); the scrollbar space is always reserved.</span>
+      <b>Release 4.5<br>11 Nov 2026</b><span>Compact phone layout: the full header shows only on Overview (other tabs get a one-line title), short tab labels with icons so all six tabs fit, and quiz mode / domain and card domain as drop-downs instead of chip rows on narrow screens.</span>
+      <b>Release 4.4.3<br>11 Nov 2026</b><span>Reset, Clear list, Reset my quiz score and Import now confirm by tapping the button twice. Pop-up confirmations are blocked inside claude.ai, which made these buttons do nothing.</span>
+      <b>Release 4.4.2<br>11 Nov 2026</b><span>Reset buttons: "↺ Reset" on Trigger cards (resets the cards in the selected domain), "Clear list" in Retry wrong, and "Reset my quiz score" on the Overview now also empties Retry wrong. Each asks you to tap twice.</span>
       <b>Release 4.4.1<br>11 Nov 2026</b><span>Removed the due badge from the menu so the tab bar stays compact; the due count is shown in the Trigger cards header.</span>
       <b>Release 4.4<br>11 Nov 2026</b><span>Fixes from the audit of the 4.3 questions: show ip static route is a real command (distractor replaced), SSH login question describes the symptom instead of a Telnet message, OSPF passive-interface question gives the interface address, DAI checks the IP-to-MAC pair, clearer syslog threshold wording, corrected trunk-encapsulation explanation.</span>
       <b>Release 4.3<br>11 Nov 2026</b><span>25 IP Connectivity cards. 52 new questions: more Network Access (wireless, management access), exhibits for IP Services, Security and Automation, 16 "spot the missing line" config questions, and every objective at 6+ questions. Cards: due cards first, a due counter, longer review intervals (up to 21 days). Progress backup: export/import on the Exam day tab.</span>
@@ -2418,6 +2447,7 @@ let filt="all",deck=[],idx=0;
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>show(b.dataset.v));
 function show(v){
   if(!document.getElementById("v-"+v))v="map";
+  document.body.dataset.v=v;
   if(location.hash.slice(1)!=v){try{history.replaceState(null,"","#"+v)}catch(e){try{location.hash=v}catch(e2){}}}
   document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x.dataset.v==v));
   document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id=="v-"+v));
@@ -2444,6 +2474,9 @@ function buildFilters(){
   f.innerHTML=`<button class="chip ${filt=="all"?"on":""}" data-k="all">All</button>`+
    Object.entries(D).map(([k,d])=>`<button class="chip ${filt==k?"on":""}" data-k="${k}" style="color:${filt==k?d.c:"var(--ink)"}">${d.s}</button>`).join("");
   f.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{filt=b.dataset.k;buildFilters();build()});
+  const cs=document.getElementById("csel");
+  cs.innerHTML=`<select id="cds" aria-label="Domain"><option value="all">All domains</option>${Object.entries(D).map(([k,d])=>`<option value="${k}"${filt==k?" selected":""}>${d.n}</option>`).join("")}</select>`;
+  document.getElementById("cds").onchange=e=>{filt=e.target.value;buildFilters();build()};
 }
 // ---- cards: spaced repetition (Leitner) ----
 const INT=[0,6e5,864e5,2592e5,6048e5,18144e5]; // due after 0, 10 min, 1 day, 3 days, 7 days, 21 days
@@ -2488,6 +2521,9 @@ function render(){
 }
 
 buildFilters();build();
+// Two-tap confirm: pop-up dialogs are blocked inside the claude.ai artifact sandbox.
+function arm(b,msg,fn){if(b.dataset.armed){clearTimeout(b._t);delete b.dataset.armed;b.innerHTML=b.dataset.lbl;b.style.background="";fn();return}
+  b.dataset.lbl=b.innerHTML;b.dataset.armed=1;b.innerHTML=msg;b.style.background="var(--bad)";b._t=setTimeout(()=>{delete b.dataset.armed;b.innerHTML=b.dataset.lbl;b.style.background=""},4000)}
 let qh={};try{qh=JSON.parse(localStorage.getItem("ccna11-qh")||"{}")}catch(e){}
 const MIG=[];
 // Release 4: carry saved progress over to questions whose wording changed
@@ -2517,6 +2553,11 @@ function qFilters(){
   f.innerHTML=`<button class="chip ${qf=="all"?"on":""}" data-k="all">All</button>`+
    Object.entries(D).map(([k,d])=>`<button class="chip ${qf==k?"on":""}" data-k="${k}" style="color:${qf==k?d.c:"var(--ink)"}">${d.s}</button>`).join("");
   f.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{qf=b.dataset.k;qFilters();qStart()});
+  const qs=document.getElementById("qsel");
+  qs.innerHTML=`<select id="qms" aria-label="Quiz mode">${Object.entries(MODES).map(([k,n])=>`<option value="${k}"${qmode==k?" selected":""}>${n}${k=="wrong"?` (${nw})`:k=="weak"?` (${wk})`:""}</option>`).join("")}</select>`+
+   (qmode=="mock"||qmode=="subnet"?"":`<select id="qds" aria-label="Domain"><option value="all">All domains</option>${Object.entries(D).map(([k,d])=>`<option value="${k}"${qf==k?" selected":""}>${d.n}</option>`).join("")}</select>`);
+  document.getElementById("qms").onchange=e=>{qmode=e.target.value;qFilters();qStart()};
+  const qd=document.getElementById("qds");if(qd)qd.onchange=e=>{qf=e.target.value;qFilters();qStart()};
 }
 function qStart(){
   clearInterval(mtimer);mock=null;qi=qr=qn=0;
@@ -2532,7 +2573,10 @@ function qStart(){
     mock={start:Date.now(),end:Date.now()+120*60e3,ans:{},sel:{}};hint="100 questions weighted like the exam · 120 minutes · no feedback until the end · no going back";
     mtimer=setInterval(()=>{const el=document.getElementById("qtime");if(!el)return;const s=Math.max(0,Math.round((mock.end-Date.now())/1e3));
       el.textContent=Math.floor(s/60)+":"+String(s%60).padStart(2,"0");el.style.color=s<600?"var(--bad)":"var(--c1)";if(s<=0){qi=qorder.length;quiz()}},1000)}
-  document.getElementById("qhint").textContent=hint;upd();quiz();
+  document.getElementById("qhint").textContent=hint;
+  const wc=document.getElementById("qwc");wc.style.display=qmode=="wrong"&&qorder.length?"inline-block":"none";
+  wc.onclick=()=>arm(wc,"Tap again to clear",()=>{const ids=Q.map((q,i)=>i).filter(i=>(qf=="all"||Q[i][0]==qf)&&ql[QK[i]]===0);ids.forEach(i=>delete ql[QK[i]]);qsave();qFilters();qStart()});
+  upd();quiz();
 }
 function quiz(){
   const box=document.getElementById("qbox");
@@ -2633,7 +2677,7 @@ function readiness(){
   Object.entries(D).forEach(([k,d])=>{const nc=C.filter(c=>c[0]==k).length,nq=Q.filter(q=>q[0]==k).length,nv=document.querySelectorAll(`details[data-d="${k}"]`).length;
     ch+=`<span class="n" style="color:${d.c}">${d.s}</span>${bar(nc,TGT.cards[k],d.c)}${bar(nq,TGT.quiz[k],d.c)}${bar(nv,TGT.vis[k],d.c)}<span></span>`});
   document.getElementById("content").innerHTML=ch+`</div><p class="why" style="margin:6px 0 0">Targets for the page itself: enough cards, questions and diagrams per domain. Met means the material is complete, not that you are ready.</p>`;
-  document.getElementById("qhr").onclick=()=>{qh={};qsave();readiness();coverage()};
+  {const hb=document.getElementById("qhr");hb.onclick=()=>arm(hb,"Tap again: reset quiz score + Retry wrong",()=>{qh={};ql={};qsave();readiness();coverage();qFilters();if(qmode!="mock")qStart()})};
 }
 document.querySelectorAll("[data-dg]").forEach(e=>e.innerHTML=drawDG(e.dataset.dg));
 // ---- search ----
@@ -2675,9 +2719,12 @@ window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(docu
    try{navigator.clipboard.writeText(ta.value).then(()=>say("Copied. Paste it somewhere safe, or into this box on another device."),()=>say("Select the text and copy it."))}catch(e){say("Select the text and copy it.")}};
  const im=document.getElementById("bkim");if(im)im.onclick=()=>{let o;try{o=JSON.parse(decodeURIComponent(escape(atob(ta.value.trim()))))}catch(e){say("That text isn't a valid backup.");return}
    if(!o||o.v!==1){say("That text isn't a valid backup.");return}
-   if(!confirm("Replace the progress in this browser with the backup from "+(o.saved||"?").slice(0,10)+"?"))return;
+   if(!im.dataset.armed){arm(im,"Tap again to replace progress",()=>{});say("This replaces the progress in this browser with the backup from "+(o.saved||"?").slice(0,10)+".");return}
+   clearTimeout(im._t);delete im.dataset.armed;im.innerHTML=im.dataset.lbl;im.style.background="";
    try{KEYS.forEach(k=>{if(o[k]!==undefined)localStorage.setItem(k,JSON.stringify(o[k]));else localStorage.removeItem(k)})}catch(e){say("This browser blocks storage, so the backup can't be restored here.");return}
    say("Restored. Reloading…");setTimeout(()=>location.reload(),400)}}
+// ---- reset buttons (release 4.4.2)
+{const cb=document.getElementById("crs");cb.onclick=()=>arm(cb,"Tap again to reset",()=>{const pool=C.map((c,i)=>i).filter(i=>filt=="all"||C[i][0]==filt);pool.forEach(i=>delete st[CK[i]]);save();review=false;build()})};
 
 
 </script>
