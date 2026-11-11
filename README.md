@@ -2,7 +2,7 @@
 
 A single-file, mobile-first study page for the Cisco **CCNA 200-301 v1.1** exam. It follows the official exam blueprint: 6 domains and 53 sub-objectives.
 
-**Live page:** https://lv-dang.github.io/ccna-study-map/ (after GitHub Pages is enabled; see below)
+**Live page:** https://lv-dang.github.io/ccna-study-map/ 
 
 ## What's inside
 
