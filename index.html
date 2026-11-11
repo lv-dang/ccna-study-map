@@ -129,7 +129,7 @@ nav .in{flex-wrap:nowrap}
   <h1>CCNA <span>200-301 v1.1</span> · Last Minute</h1>
   <div class="sub">Blueprint-aligned: diagrams, trigger cards, scenario quiz, numbers</div>
   <div class="sub" style="color:var(--warn,#f0b45a);font-weight:600">For CCNA 200-301 v1.1 only · last date to test v1.1: 2 Feb 2027</div>
-  <div class="sub">Study map release 4.2 · 11 Nov 2026 · <a href="#" id="clink" style="color:inherit;text-decoration:underline">changelog</a></div>
+  <div class="sub">Study map release 4.4.1 · 11 Nov 2026 · <a href="#" id="clink" style="color:inherit;text-decoration:underline">changelog</a></div>
 </header>
 <nav><div class="in">
   <button data-v="map" class="on">🗺️ Overview</button>
@@ -1197,8 +1197,17 @@ Client: gets an IP from the WLAN's VLAN</pre></div>
       <b>Puppet / Chef</b><span>Dropped in v1.1. Expect Ansible and Terraform.</span>
     </div>
   </div>
-  <details class="sec" id="changelog"><summary>📝 Changelog <span class="src">release 4.2</span></summary>
+  <details class="sec" id="backup"><summary>💾 Back up or move your progress <span class="src">cards · quiz · mocks</span></summary>
+    <p class="why">Progress is stored only in this browser. Export it to keep a copy or to continue on another device, then paste it here and import.</p>
+    <textarea id="bkta" rows="4" style="width:100%;box-sizing:border-box;background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px;font:12px 'JetBrains Mono',monospace" placeholder="Your backup text appears here, or paste one to import"></textarea>
+    <div style="display:flex;gap:8px;margin-top:8px"><button class="reset" id="bkex" style="flex:1">Export</button><button class="reset" id="bkim" style="flex:1">Import</button></div>
+    <p class="why" id="bkmsg" style="margin-top:6px"></p>
+  </details>
+  <details class="sec" id="changelog"><summary>📝 Changelog <span class="src">release 4.4.1</span></summary>
     <div class="lsa">
+      <b>Release 4.4.1<br>11 Nov 2026</b><span>Removed the due badge from the menu so the tab bar stays compact; the due count is shown in the Trigger cards header.</span>
+      <b>Release 4.4<br>11 Nov 2026</b><span>Fixes from the audit of the 4.3 questions: show ip static route is a real command (distractor replaced), SSH login question describes the symptom instead of a Telnet message, OSPF passive-interface question gives the interface address, DAI checks the IP-to-MAC pair, clearer syslog threshold wording, corrected trunk-encapsulation explanation.</span>
+      <b>Release 4.3<br>11 Nov 2026</b><span>25 IP Connectivity cards. 52 new questions: more Network Access (wireless, management access), exhibits for IP Services, Security and Automation, 16 "spot the missing line" config questions, and every objective at 6+ questions. Cards: due cards first, a due counter, longer review intervals (up to 21 days). Progress backup: export/import on the Exam day tab.</span>
       <b>Release 4.2<br>11 Nov 2026</b><span>Fixes from a full audit of all 386 questions: SAE wording (the 4-way handshake still runs), copy tftp: running-config merges, client exclusion per platform (AireOS 180 s / Catalyst 9800 60 s), clearer RADIUS, static-route, STP, Terraform and IPsec items, clearer subnetting generator wording.</span>
       <b>Release 4.1<br>11 Nov 2026</b><span>Scope stated as CCNA 200-301 v1.1 only (no other exam versions mentioned). Changelog link in the header now opens this list.</span>
       <b>Release 4<br>11 Nov 2026</b><span>Fixes from three external audits, each checked against Cisco docs and the books: PoE table separates IEEE and Cisco names (no 99 W), WLC limits per platform (AireOS 512 / Catalyst 9800 4096), OSPF config (bandwidth value, priority not on point-to-point), PVST+ native-VLAN blocking, LACP passive/passive, BCP 38 filtering, TCP header 20–60 B, 403 vs 401, clearer syslog, STP, DR-election and subnet-mask questions. Mock exam review now marks your wrong picks. Web-checked facts: v1.1 last test date, exam facts, WPA3 ciphers (CCMP-128 / GCMP-256), 6 GHz requires WPA3 or OWE, Cisco AI tools, Terraform/IBM. Version number and changelog added.</span>
@@ -2068,6 +2077,100 @@ Q.push(
 ["p","Catalyst Center learns each site's normal client count and flags a sudden jump. Which AI approach is this?",["ML-based anomaly detection against a baseline","Generative AI writing a configuration","Rule-based SNMP threshold only","Agentless configuration management"],0,"Cisco AI Network Analytics builds ML baselines and alerts on deviations (predictive). The Cisco AI Assistant chat is the generative side. A fixed SNMP threshold doesn't learn what is normal. (Cisco docs)","6.4"]
 );
 
+// Release 4.3: IP Connectivity cards, Network Access depth, exhibits for Services/Security/Automation,
+// "spot the missing line" config questions, thin objectives. Correct option first; shuffled at render.
+C.push(
+["i","'10.0.0.0/8 is variably subnetted, 5 subnets, 3 masks'","5 subnets of one classful network are in the table, using 3 different masks (VLSM)","Just a header line: no summary, no ECMP.","OCG1","3.1"],
+["i","'via 10.0.0.2, 00:12:44, Gi0/1' at the end of a route","Next hop · time since the route was learned or updated · exit interface","Connected routes show 'is directly connected' instead of a next hop.","OCG1","3.1"],
+["i","Codes for OSPF inter-area, external and default routes","O IA = another area · O E1 / O E2 = redistributed (external) · O*E2 = OSPF-learned default","Plain O = intra-area.","OCG1","3.1"],
+["i","IPv6 routing table: C and L entries","C 2001:db8:1:1::/64 = connected prefix · L 2001:db8:1:1::1/128 = the router's own address","Same idea as IPv4 L /32 routes.","OCG1","3.1"],
+["i","* in the routing table and 'Gateway of last resort'","* = candidate default route · 'Gateway of last resort is X to network 0.0.0.0' = the default in use","'not set' = no default route.","OCG1","3.1"],
+["i","OSPF /16 vs static /24 with AD 250, packet inside the /24","The static /24: both are installed (different prefixes), and the longest match wins","AD only compares routes to the same prefix.","OCG1","3.2"],
+["i","Static route with AD 120 vs OSPF route, same prefix","OSPF (110) is installed; the static floats as a backup","Lower AD wins for the same prefix.","OCG1","3.2"],
+["i","When is the default route used?","Only when nothing more specific matches: 0.0.0.0/0 matches everything but is the shortest prefix","Without a default, unmatched packets are dropped.","OCG1","3.2"],
+["i","How a router shares load over equal-cost routes by default","Per destination (CEF): each destination sticks to one path","Per-packet balancing is possible but not the default.","OCG1","3.2"],
+["i","What a router changes in the IP header when forwarding","TTL − 1 and the header checksum; source and destination IPs stay","Only NAT (or a tunnel) changes the addresses.","OCG1","3.2"],
+["i","IPv4 static route masks: network, host, default","Network e.g. 255.255.255.0 · host 255.255.255.255 (/32) · default 0.0.0.0 0.0.0.0","IPv6: host /128, default ::/0.","OCG1","3.3"],
+["i","Floating static route for IPv6","ipv6 route ::/0 2001:db8:0:1::1 130 (AD after the next hop)","Same rule as IPv4: AD higher than the route it backs up.","OCG1","3.3"],
+["i","Recursive static route lookup","The router looks up the next hop in its own table to find the exit interface","No route to the next hop → the static route isn't installed.","OCG1","3.3"],
+["i","Verify static routes","show ip route static · show ipv6 route static · show ip route 10.9.9.0 (distance, next hop)","The detail view shows 'Known via static, distance X'.","OCG1","3.3"],
+["i","Router has IPv6 addresses and static routes but doesn't route IPv6","ipv6 unicast-routing","Also needed before it sends Router Advertisements.","OCG1","3.3"],
+["i","OSPF packet types","Hello · Database Description (DBD) · LS Request · LS Update · LS Ack","LSUs carry the LSAs.","OCG1","3.4"],
+["i","ip ospf hello-interval 5: what happens to the dead interval?","IOS sets it to 4 × hello = 20 s automatically","Unless the dead interval was set by hand. Both sides must still match.","OCG1","3.4"],
+["i","Enable OSPF on one interface without a network command","interface g0/1 → ip ospf 1 area 0","Interface mode and network commands can be mixed.","OCG1","3.4"],
+["i","Default OSPF network types","Ethernet: broadcast (DR/BDR) · serial HDLC/PPP: point-to-point","Both use hello 10 / dead 40.","OCG1","3.4"],
+["i","show ip ospf interface brief: State column","DR / BDR / DROTH on broadcast links · P2P on point-to-point · LOOP on loopbacks","Nbrs F/C = full adjacencies / neighbor count.","OCG1","3.4"],
+["i","New router-id configured: when does it take effect?","After clear ip ospf process (or a reload)","IOS warns you when you enter it.","OCG1","3.4"],
+["i","Neighbor stuck in EXSTART/EXCHANGE","MTU mismatch: fix the MTU (or ip ospf mtu-ignore)","Timer and area mismatches stop the neighbor much earlier.","OCG1","3.4"],
+["i","HSRP states","Initial → Learn → Listen → Speak → Standby → Active","Only one active and one standby per group.","OCG2","3.5"],
+["i","HSRP vs VRRP terms and defaults","HSRP: active/standby, preempt off · VRRP: master/backup, preempt on, VIP may be a real interface IP","Both: highest priority wins, default 100.","OCG2","3.5"],
+["i","FHRP versions that support IPv6","HSRPv2, VRRPv3 and GLBP","HSRPv1 and VRRPv2 are IPv4 only.","OCG2","3.5"]
+);
+Q.push(
+// ---- Network Access: standard
+["a","A WLC appliance in the data center manages 500 lightweight APs across the campus. Which deployment model is this?",["Unified (centralized) WLC","Embedded WLC in an access switch","Cloud-based WLC running as a VM","Autonomous APs with no controller"],0,"A unified WLC is a dedicated appliance at a central site. Embedded runs inside a switch, cloud-based runs as a VM in a data center or cloud, and autonomous APs have no controller. (OCG2)","2.6"],
+["a","Which AP mode links two buildings wirelessly, carrying traffic between them?",["Bridge","FlexConnect","Monitor","Local"],0,"Bridge (mesh) mode builds point-to-point or point-to-multipoint wireless links between APs. FlexConnect is for branches, Monitor only listens, Local serves clients through the WLC. (OCG2)","2.6"],
+["a","A FlexConnect AP switches SSIDs locally into VLANs 10 and 20 and is managed in VLAN 99. How should its switch port be configured?",["An 802.1Q trunk carrying VLANs 10, 20 and 99","An access port in VLAN 99 only","An access port in VLAN 10 with voice VLAN 20","A routed port with an IP in VLAN 99"],0,"Locally switched client VLANs must reach the switch tagged, so the port is a trunk. A local-mode AP tunnels client traffic in CAPWAP and needs only an access port. (OCG2)","2.7"],
+["a","Which AireOS WLC interface is used for DHCP relay and the web-authentication redirect address?",["Virtual interface","Management interface","Service port interface","Dynamic interface"],0,"The virtual interface has a non-routed address used for DHCP relay and web auth. The management interface handles CAPWAP and management, dynamic interfaces carry client VLANs, and the service port is out-of-band. (OCG2)","2.7"],
+["a","Which protocol keeps web-based device management encrypted?",["HTTPS","HTTP","Telnet","TFTP"],0,"HTTPS (ip http secure-server) encrypts the GUI session. HTTP and Telnet send credentials in clear text, and TFTP is a file transfer protocol. (OCG2)","2.8"],
+["a","A brand-new switch has no IP configuration. How does an engineer first reach its CLI?",["Console cable to the console port","SSH to the default IP 192.168.1.1","Telnet to its VLAN 1 address","HTTPS to the Meraki dashboard"],0,"With no IP address, only out-of-band console access works (rollover or USB console cable). Cisco IOS switches have no default management IP. (OCG1)","2.8"],
+["a","On an AireOS WLAN's General tab, which setting maps the WLAN to a client VLAN?",["Interface/Interface Group","Radio Policy (bands)","Broadcast SSID checkbox","QoS profile on the QoS tab"],0,"The interface (or interface group) ties the WLAN to a dynamic interface, which belongs to a VLAN. Radio Policy picks the bands, Broadcast SSID controls beacons, and QoS is on its own tab. (31D · OCG2)","2.9"],
+["a","Which WLAN setting stops the SSID name from being advertised in beacons?",["Unchecking Broadcast SSID","Setting the QoS profile to Bronze","Enabling Client Exclusion","Setting the session timeout to 0"],0,"Hiding the SSID only removes it from beacons; clients can still discover it, so it isn't real security. (OCG2)","2.9"],
+["a","Which command stops a trunk port from sending DTP frames?",["switchport nonegotiate","switchport mode dynamic auto","no switchport","switchport trunk native vlan 999"],0,"nonegotiate turns off DTP on a static trunk or access port. dynamic auto relies on DTP, no switchport makes a routed port, and the native VLAN has nothing to do with DTP. (OCG1)","2.2"],
+["a","A trunk allows VLANs 10, 20 and 30. Which command removes only VLAN 30?",["switchport trunk allowed vlan remove 30","switchport trunk allowed vlan 30","no switchport trunk allowed vlan","switchport trunk allowed vlan except 10,20"],0,"remove takes one VLAN out of the list. Without a keyword the list is replaced, no … resets it to all VLANs, and except 10,20 would allow every VLAN except 10 and 20. (OCG1)","2.2"],
+["a","A Rapid PVST+ PortFast (edge) port without BPDU Guard receives a BPDU. What happens?",["It loses edge status and runs normal STP","It is err-disabled immediately","It ignores the BPDU and stays an edge port","It becomes the root port for all VLANs"],0,"An edge port that hears a BPDU becomes a normal (non-edge) STP port. Err-disabling needs BPDU Guard. (OCG1)","2.5"],
+["a","Two Cisco switches see each other in show cdp neighbors, but show lldp neighbors is empty. Most likely?",["LLDP was never enabled with lldp run","LLDP only works between non-Cisco devices","CDP blocks LLDP on the same port","The switches need a trunk for LLDP"],0,"LLDP is off by default on most Cisco switches; CDP and LLDP can run side by side on any port type. (31D · OCG2)","2.3"],
+// ---- Network Access: spot the missing line
+["a","Config: interface g0/3 ; switchport mode access ; switchport access vlan 10. A Cisco IP phone with a PC behind it is connected; voice must go to VLAN 50. Which line is missing?",["switchport voice vlan 50","switchport access vlan 50","switchport mode trunk","switchport trunk native vlan 50"],0,"The voice VLAN command tells the phone (through CDP) to tag voice in VLAN 50, while the PC stays untagged in access VLAN 10. (OCG1)","2.1"],
+["a","On an older switch, 'switchport mode trunk' is rejected with: An interface whose trunk encapsulation is \"Auto\" can not be configured to \"trunk\" mode. Which command fixes it?",["switchport trunk encapsulation dot1q","switchport nonegotiate","switchport trunk native vlan 1","switchport trunk allowed vlan add 1-4094"],0,"Switches that support ISL and 802.1Q need the encapsulation set before static trunking. nonegotiate, the native VLAN and the allowed list don't change the encapsulation. (OCG1)","2.2"],
+["a","Config: interface g0/5 ; switchport mode access ; spanning-tree portfast. Policy: if anyone plugs a switch into this port, shut it down. Which line is missing?",["spanning-tree bpduguard enable","spanning-tree guard root","spanning-tree bpdufilter enable","spanning-tree guard loop"],0,"BPDU Guard err-disables a PortFast port that receives a BPDU. Root Guard only blocks superior BPDUs, BPDU Filter stops BPDUs entirely (dangerous), and Loop Guard protects non-designated ports. (OCG1)","2.5"],
+["a","SW1: channel-group 1 mode active on g0/1–2. SW2: channel-group 1 mode on on g0/1–2. No EtherChannel forms. Fix on SW2?",["channel-group 1 mode active","channel-group 1 mode desirable","channel-group 1 mode auto","No change; on and active always work"],0,"on means no negotiation protocol, so it only pairs with on. LACP active (or passive) on SW2 works with SW1's active; desirable/auto are PAgP. (OCG1)","2.4"],
+// ---- IP Connectivity: spot the missing line
+["i","R1: ipv6 route ::/0 fe80::1 is rejected. All unknown IPv6 traffic must go to the ISP router's link-local fe80::1 out g0/1. Correct command?",["ipv6 route ::/0 g0/1 fe80::1","ipv6 route ::/0 fe80::1 g0/1 permanent","ip route ::/0 g0/1 fe80::1","ipv6 route 0::/128 g0/1 fe80::1"],0,"A link-local next hop is only unique per link, so the exit interface must come first. ::/128 would match one address, and ip route is IPv4. (OCG1)","3.3"],
+["i","Config: router ospf 1 ; passive-interface default ; network 10.0.0.0 0.255.255.255 area 0. R1's g0/1 is 10.1.12.1/30 and forms no neighbor toward R2. Which line is missing?",["no passive-interface g0/1","network 10.1.12.0 0.0.0.3 area 0","ip ospf network broadcast","default-information originate"],0,"passive-interface default stops hellos on every interface; re-enable the ones that need neighbors. The network statement already covers g0/1 (10.1.12.1 is inside 10.0.0.0/8). (OCG1)","3.4"],
+["i","Config: interface g0/1 ; ip address 10.1.12.1 255.255.255.0 and router ospf 1 ; router-id 1.1.1.1. No network commands exist. g0/1 never joins OSPF. Which line is missing?",["ip ospf 1 area 0 under interface g0/1","network 1.1.1.1 0.0.0.0 area 0","ip ospf hello-interval 10 under g0/1","passive-interface default under router ospf 1"],0,"Without a network command, OSPF must be enabled per interface with ip ospf <process> area <area>. The router ID isn't an interface address to advertise. (OCG1)","3.4"],
+["i","R1: standby 1 ip 10.1.1.1 ; standby 1 priority 110. R2: standby 1 ip 10.1.1.1. After R1 reboots, R2 stays active. Which line is missing on R1?",["standby 1 preempt","standby 1 priority 100","standby version 1","standby 1 timers 3 10"],0,"HSRP doesn't preempt by default, so the higher priority alone doesn't take the active role back. (OCG2)","3.5"],
+["i","Config: ip route 10.9.9.0 255.255.255.0 10.1.1.254. Only server 10.9.9.9 should use 10.1.1.254; the rest of 10.9.9.0/24 follows OSPF. Correct command?",["ip route 10.9.9.9 255.255.255.255 10.1.1.254","ip route 10.9.9.9 0.0.0.0 10.1.1.254","ip route 10.9.9.0 255.255.255.255 10.1.1.254","ip route 10.9.9.9 255.255.255.0 10.1.1.254 130"],0,"A host route uses mask 255.255.255.255 and wins by longest match. Mask 0.0.0.0 makes a default-style match, and 10.9.9.0/32 is the wrong host. (OCG1)","3.3"],
+// ---- IP Connectivity: exhibits + standard
+["i","Exhibit: R1# show ipv6 route (excerpt)"+X("S   ::/0 [1/0]\n     via FE80::1, GigabitEthernet0/1\nC   2001:DB8:1:1::/64 [0/0]\n     via GigabitEthernet0/0, directly connected\nL   2001:DB8:1:1::1/128 [0/0]\n     via GigabitEthernet0/0, receive")+"Where does R1 send a packet to 2001:DB8:9::5?",["Out Gi0/1 to FE80::1 (default route)","Out Gi0/0, because it is directly connected","To itself, because of the L /128 entry","Nowhere; no route matches it"],0,"2001:DB8:9::5 isn't in 2001:DB8:1:1::/64, so only ::/0 matches. The L /128 entry is R1's own address. (OCG1)","3.1"],
+["i","Exhibit: R1# show ip ospf interface brief"+X("Interface  PID  Area  IP Address/Mask   Cost  State  Nbrs F/C\nGi0/0      1    0     10.1.1.1/24       1     DR     2/2\nGi0/1      1    0     10.1.12.1/30      10    P2P    1/1\nLo0        1    0     1.1.1.1/32        1     LOOP   0/0"),["R1 is DR on Gi0/0; Gi0/1 is point-to-point","R1 has no full adjacencies on Gi0/0, only two-way neighbors","Gi0/1 elected R1 as its DR, with one full neighbor","Lo0 forms an adjacency with router 1.1.1.1"],0,"State DR with 2/2 = two full neighbors on Gi0/0. P2P means no DR election on Gi0/1. Loopbacks never form adjacencies. (OCG1)","3.4"],
+["i","Which OSPF packet type carries the LSAs themselves?",["Link-State Update (LSU)","Hello","Database Description (DBD)","Link-State Request (LSR)"],0,"DBDs list LSA headers, LSRs ask for missing ones, LSUs carry them and LSAcks confirm. Hellos find and keep neighbors. (OCG1)","3.4"],
+["i","An engineer sets ip ospf hello-interval 5 on an interface and nothing else. What is the dead interval now?",["20 seconds","40 seconds","10 seconds","15 seconds"],0,"IOS sets the dead interval to 4 × hello automatically unless it was configured by hand. The neighbor must match both values. (OCG1)","3.4"],
+["i","Which command lists only the static routes in the IPv4 table?",["show ip route static","show ip route summary","show running-config | include static","show ip protocols"],0,"show ip route static filters the table. show ip route summary only gives counts per route source, the running-config shows config but not whether the route is installed, and show ip protocols covers dynamic protocols. (OCG1)","3.3"],
+["i","Which FHRP version supports IPv6?",["HSRP version 2","HSRP version 1","VRRP version 2","None; IPv6 hosts only use Router Advertisements"],0,"HSRPv2, VRRPv3 and GLBP support IPv6. HSRPv1 and VRRPv2 are IPv4 only. (OCG2)","3.5"],
+["i","Routes: 192.168.1.0/25 via A, 192.168.1.128/26 via B, 192.168.1.0/24 via C. Where does a packet to 192.168.1.130 go?",["Via B","Via A","Via C","Load-shared between B and C"],0,"/25 covers .0–.127 (no match), /26 at .128 covers .128–.191 (match), and the /24 also matches but is shorter. Longest match: B. (OCG1)","3.2"],
+// ---- IP Services: exhibits + config
+["s","Exhibit: R1# show ip dhcp binding"+X("IP address      Client-ID/              Lease expiration        Type       State\n                Hardware address\n10.30.0.11      0100.5079.6668.01       Nov 12 2026 09:14 AM    Automatic  Active"),["R1's DHCP server leased 10.30.0.11 from a pool","10.30.0.11 is an excluded address that R1 never leases","The client has a manual (static) binding configured on R1","10.30.0.11 is in conflict, so R1 has blocked it"],0,"Type Automatic = leased from a pool. The client ID is 01 (Ethernet) + the MAC. Excluded addresses never appear as bindings; conflicts show in show ip dhcp conflict. (OCG2)","4.3"],
+["s","Exhibit: R2# show ntp status"+X("Clock is unsynchronized, stratum 16, no reference clock\nnominal freq is 250.0000 Hz, actual freq is 250.0000 Hz"),["R2 isn't synchronized to any NTP server","R2 is the most accurate clock in the network","R2 is synchronized at stratum 16","R2 is acting as NTP master for its clients"],0,"Stratum 16 means unsynchronized. Check ntp server, reachability and UDP 123. (OCG2)","4.2"],
+["s","Exhibit: R1# show logging (excerpt)"+X("Trap logging: level warnings, 43 message lines logged\n    Logging to 192.168.1.3 (udp port 514, audit disabled,\n         link up)")+"Does %OSPF-5-ADJCHG reach 192.168.1.3?",["No: severity 5 is less severe than the warnings (4) threshold","Yes: all OSPF messages are always sent","Yes: the trap level only limits the console","No: OSPF messages never go to syslog servers"],0,"logging trap warnings sends severities 0–4. ADJCHG is 5 (notification), so it stays local. (OCG2)","4.5"],
+["s","Config: R1: ntp master 3 (10.0.0.1). R2 shows 'Clock is unsynchronized'. R2 has no NTP commands. Which line is missing on R2?",["ntp server 10.0.0.1","ntp master 4","clock set 10.0.0.1","ntp source loopback0 on R2"],0,"A client needs ntp server pointing at the time source. ntp master would make R2 a server itself, and clock set only sets the clock by hand. (OCG2)","4.2"],
+["s","Config: hostname R1 ; ip domain-name lab.local ; crypto key generate rsa modulus 2048 ; username admin secret Adm1n! ; line vty 0 15 ; transport input ssh. SSH connects, but every login attempt fails. Which line is missing?",["login local under line vty 0 15","ip ssh version 2 in global configuration","enable secret under line vty","crypto key generate rsa again"],0,"Without login local the vty lines check a line password that doesn't exist instead of the username database. login local makes SSH logins use the local usernames. (OCG2)","4.8"],
+// ---- Security: exhibits
+["y","Exhibit: SW1# show ip dhcp snooping binding"+X("MacAddress          IpAddress    Lease(sec)  Type           VLAN  Interface\n00:50:79:66:68:01   10.30.0.11   86210       dhcp-snooping   30   Gi0/3")+"DAI is on in VLAN 30. Which ARP replies pass on an untrusted port?",["Only ARPs that map 10.30.0.11 to 0050.7966.6801","Any ARP from a host in VLAN 30","Any ARP that lists 10.30.0.11","Only ARPs from statically addressed servers"],0,"DAI checks each ARP's IP-to-MAC pair in VLAN 30 against the snooping bindings. A static-IP host needs an ARP ACL or a trusted port. (OCG2)","5.7"],
+["y","Exhibit: SW1# show port-security address"+X("Vlan    Mac Address       Type              Ports   Remaining Age\n  10    0050.7966.6801    SecureSticky      Fa0/5        -\n  10    0050.7966.6802    SecureDynamic     Fa0/6        -")+"The engineer saves the config and reloads. Which secure MAC is still known after the reload?",["Only 0050.7966.6801 on Fa0/5","Only 0050.7966.6802 on Fa0/6","Both, because port security saves every MAC","Neither; secure MACs are always relearned"],0,"Sticky MACs are written to the running-config, so saving keeps them. Dynamic secure MACs live only in the MAC table and are relearned after a reload. (OCG2)","5.7"],
+["y","Exhibit: R1# show running-config | section line vty"+X("line vty 0 4\n password 7 0822455D0A16\n login\n transport input telnet ssh\nline vty 5 15\n login local\n transport input ssh"),["Lines 0–4 accept Telnet with just the line password","All 16 lines require a username and password","Lines 5–15 also accept Telnet with a local username","The password on lines 0–4 is a strong hash"],0,"login (without local) checks the line password; transport input telnet ssh allows Telnet. Lines 5–15 use usernames and SSH only. Type 7 is reversible. (OCG2)","5.3"],
+["y","Exhibit: R1# show ip interface g0/0 (excerpt)"+X("GigabitEthernet0/0 is up, line protocol is up\n  Internet address is 10.1.1.1/24\n  Outgoing access list is not set\n  Inbound  access list is 110"),["ACL 110 filters packets arriving on G0/0","ACL 110 filters packets leaving G0/0","ACL 110 controls vty access to R1","No ACL is applied in either direction on G0/0"],0,"ip access-group 110 in on G0/0 shows as the inbound access list. vty filtering uses access-class and doesn't appear here. (OCG2)","5.6"],
+// ---- Security: thin objectives
+["y","IT sends staff a fake phishing email to see who clicks, then shows them what to look for. Which security program element is this?",["User awareness","Physical access control","Accounting","Authorization"],0,"Phishing simulations and reminders build awareness. Physical controls guard equipment, and accounting/authorization are AAA functions. (OCG1)","5.2"],
+["y","Which authentication factor is 'something you have'?",["A smart card","A fingerprint","A PIN","A password"],0,"Possession factors include tokens, smart cards and phone authenticator apps. A fingerprint is 'something you are'; PINs and passwords are 'something you know'. (OCG1)","5.4"],
+["y","Which IPsec mode encrypts the whole original IP packet, header included, as site-to-site gateways do?",["Tunnel mode","Transport mode","Aggressive mode","Main mode"],0,"Tunnel mode wraps the original packet in a new IP header. Transport mode protects only the payload. Main and aggressive are IKE phase 1 modes. (OCG2)","5.5"],
+["y","Configuring a WPA2-PSK WLAN, which PSK format lets you type a normal passphrase?",["ASCII (8–63 characters)","HEX (64 characters)","Base64 (32 characters)","Binary key file (256 bits)"],0,"ASCII takes a passphrase; HEX takes the 64-digit raw key. There is no Base64 or binary option. (OCG2)","5.10"],
+// ---- Security: spot the missing line
+["y","Config: access-list 10 permit 10.9.9.0 0.0.0.255 ; line vty 0 15 ; transport input ssh. Hosts outside 10.9.9.0/24 can still SSH to R1. Which line is missing?",["access-class 10 in under line vty 0 15","ip access-group 10 in under line vty 0 15","access-list 10 deny any log","ip ssh source-interface vlan 10"],0,"access-class applies an ACL to the vty lines; ip access-group is an interface command. A deny any is already implicit. (OCG2)","5.6"],
+["y","Config: interface fa0/5 ; switchport mode access ; switchport port-security maximum 2 ; switchport port-security violation restrict. A third MAC is never blocked. Which line is missing?",["switchport port-security","switchport port-security mac-address sticky","switchport port-security aging time 10","spanning-tree portfast"],0,"The maximum and violation settings do nothing until switchport port-security turns the feature on. Sticky and aging are optional. (OCG2)","5.7"],
+["y","Config: aaa new-model ; tacacs server TAC1 (10.9.9.50, key set) ; aaa authentication login default group tacacs+. When the TACACS+ server is down, nobody can log in. Which change fixes it?",["Add local to the end: … group tacacs+ local","Add aaa authorization exec default local","Change it to group radius","Remove aaa new-model so the line password works"],0,"local as the second method is used when the server doesn't answer. It isn't used when the server rejects the login. (OCG2)","5.8"],
+["y","Config: ip dhcp snooping ; interface g0/24 ; ip dhcp snooping trust. A rogue DHCP server on an access port in VLAN 30 still hands out addresses. Which line is missing?",["ip dhcp snooping vlan 30","ip dhcp snooping trust on the access ports","ip arp inspection vlan 30","switchport port-security on g0/24"],0,"Snooping filters nothing until it is enabled per VLAN. Trusting access ports would allow the rogue, and DAI checks ARP, not DHCP. (OCG2)","5.7"],
+// ---- Automation: exhibits
+["p","Exhibit:"+X("- name: Configure VLANs\n  hosts: access_switches\n  gather_facts: no\n  tasks:\n    - name: Add VLAN 10\n      cisco.ios.ios_vlans:\n        config:\n          - vlan_id: 10\n            name: USERS\n        state: merged")+"What is this?",["An Ansible playbook in YAML for the access_switches inventory group","A Terraform HCL resource block for VLAN 10","A JSON payload for a REST POST","A NETCONF XML filter"],0,"YAML indentation, hosts and tasks are Ansible playbook features; hosts refers to an inventory group. Terraform uses HCL blocks in braces. (OCG2)","6.6"],
+["p","Exhibit:"+X("resource \"aws_instance\" \"web\" {\n  ami           = \"ami-0abc123\"\n  instance_type = \"t3.micro\"\n}")+"Which tool and language is this?",["Terraform, HCL","Ansible, YAML","Python, JSON","NETCONF, XML"],0,"resource \"type\" \"name\" { … } is HashiCorp Configuration Language; a provider (here AWS) turns it into API calls. (OCG2)","6.6"],
+["p","Exhibit:"+X("GET /dna/intent/api/v1/network-device HTTP/1.1\nX-Auth-Token: eyJhbGciOi...\n\nHTTP/1.1 200 OK\nContent-Type: application/json"),["A northbound API call that succeeded and returned JSON","A southbound NETCONF call from the controller to a switch","A failed request: the server rejected the X-Auth-Token","A POST that created a new device on the controller"],0,"A script calling Catalyst Center's REST API uses the northbound interface. 200 OK = success, the token is in X-Auth-Token, and GET only reads. (OCG2)","6.3"],
+// ---- Fundamentals: thin objectives
+["f","Which WAN service connects sites over a provider's private network using labels, with no encryption by default?",["MPLS VPN","Site-to-site IPsec over the Internet","Metro Ethernet E-Tree with MACsec","Broadband DSL with PPPoE"],0,"MPLS forwards labeled packets across the provider network; privacy comes from separation, not encryption. IPsec encrypts, and DSL is an Internet access technology. (OCG2)","1.2"],
+["f","Which IPv4 block is the shared address space used by carrier-grade NAT, separate from RFC 1918?",["100.64.0.0/10","172.16.0.0/12","169.254.0.0/16","192.0.2.0/24"],0,"RFC 6598 reserves 100.64.0.0/10 for CGNAT. 172.16.0.0/12 is RFC 1918, 169.254.0.0/16 is link-local (APIPA), and 192.0.2.0/24 is for documentation. (OCG1)","1.7"],
+["f","What is the width of a standard, non-bonded Wi-Fi channel in 5 GHz?",["20 MHz","22 MHz","40 MHz","80 MHz"],0,"5 and 6 GHz channels are 20 MHz; 40/80/160 MHz bond several. 22 MHz is the classic 2.4 GHz DSSS channel width. (OCG2)","1.11"],
+["f","Which statement about VRF-Lite is true?",["Each VRF has its own routing table and its own interfaces","All VRFs share one routing table but use different VLANs","VRFs only work when MPLS runs between every pair of routers","A VRF is a virtual machine that runs a routing protocol"],0,"VRF-Lite separates routing tables on one router without MPLS, so tenants can reuse the same addresses. (OCG2)","1.12"]
+);
+
 // ---- Subnetting generator: unlimited fresh questions for the Quiz tab (mode "Subnetting"). Not stored in progress.
 const GQ=[];
 const SN=(()=>{
@@ -2343,44 +2446,45 @@ function buildFilters(){
   f.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{filt=b.dataset.k;buildFilters();build()});
 }
 // ---- cards: spaced repetition (Leitner) ----
-const INT=[0,6e5,36e5,864e5,2592e5]; // due after 0, 10 min, 1 h, 1 day, 3 days
+const INT=[0,6e5,864e5,2592e5,6048e5,18144e5]; // due after 0, 10 min, 1 day, 3 days, 7 days, 21 days
 const lv=i=>{const v=st[CK[i]];return v==null?0:typeof v=="number"?v:(v.l||0)};
 const tsv=i=>{const v=st[CK[i]];return v&&typeof v=="object"?(v.t||0):0};
 const known=i=>lv(i)>=1;
-const due=i=>Date.now()-tsv(i)>=INT[Math.min(lv(i),4)];
+const due=i=>Date.now()-tsv(i)>=INT[Math.min(lv(i),5)];
+const dueCount=()=>C.reduce((n,c,i)=>n+(known(i)&&due(i)?1:0),0);
 let review=false;
 function build(){
   const pool=C.map((c,i)=>i).filter(i=>filt=="all"||C[i][0]==filt);
   const fresh=shuf(pool.filter(i=>!known(i)));
   const dueK=pool.filter(i=>known(i)&&due(i)).sort((a,b)=>lv(a)-lv(b));
-  deck=review?pool.filter(known).sort((a,b)=>lv(a)-lv(b)):fresh.concat(dueK);
+  deck=review?pool.filter(known).sort((a,b)=>lv(a)-lv(b)):dueK.concat(fresh);
   render();
 }
 function render(){
   const pool=C.map((c,i)=>i).filter(i=>filt=="all"||C[i][0]==filt),kn=pool.filter(known).length;
   document.getElementById("pinfo").textContent=(filt=="all"?"All domains":D[filt].n)+(review?" · review":"");
-  document.getElementById("pstat").textContent=`${kn} / ${pool.length} known`;
+  const dn=pool.filter(i=>known(i)&&due(i)).length,nw=pool.length-kn;document.getElementById("pstat").textContent=`${dn} due · ${nw} new · ${kn} / ${pool.length} known`;
   const el=document.getElementById("deck");
   if(!deck.length){
-    const next=pool.filter(known).map(i=>tsv(i)+INT[Math.min(lv(i),4)]-Date.now()).filter(x=>x>0).sort((a,b)=>a-b)[0];
+    const next=pool.filter(known).map(i=>tsv(i)+INT[Math.min(lv(i),5)]-Date.now()).filter(x=>x>0).sort((a,b)=>a-b)[0];
     const nt=next?(next<36e5?Math.ceil(next/6e4)+" min":next<864e5?Math.ceil(next/36e5)+" h":Math.ceil(next/864e5)+" d"):null;
-    el.innerHTML=`<div class="done"><b>All caught up 🎉</b>Known cards come back when they're due (10 min → 1 h → 1 day → 3 days).${nt?`<br>Next card due in ${nt}.`:""}<br>
+    el.innerHTML=`<div class="done"><b>All caught up 🎉</b>Known cards come back when they're due (10 min → 1 day → 3 days → 7 days → 21 days).${nt?`<br>Next card due in ${nt}.`:""}<br>
       <button class="reset" id="rv">Review known cards now</button> <button class="reset" id="rs">Reset this stack</button></div>`;
     document.getElementById("rv").onclick=()=>{review=true;build()};
     document.getElementById("rs").onclick=()=>{pool.forEach(i=>delete st[CK[i]]);save();review=false;build()};return}
   const i=deck[0],c=C[i],d=D[c[0]];
   const src=c[4]?` · <span style="color:var(--mute)">${c[4]}</span>`:"";
   const dk=cardDiag(c),L=lv(i);
-  const dots=[1,2,3,4].map(n=>`<i style="display:inline-block;width:7px;height:7px;border-radius:50%;margin-left:3px;background:${n<=L?d.c:"var(--line)"}"></i>`).join("");
+  const dots=[1,2,3,4,5].map(n=>`<i style="display:inline-block;width:7px;height:7px;border-radius:50%;margin-left:3px;background:${n<=L?d.c:"var(--line)"}"></i>`).join("");
   el.innerHTML=`<div class="card${dk?" big":""}" id="cd"><div class="f">
    <div class="side front"><div class="lbl" style="color:${d.c}">${d.n} · Requirement${src}<span style="float:right">${dots}</span></div><div class="q">${c[1]}</div><div class="tap">tap to flip ↻</div></div>
    <div class="side back"><div class="lbl" style="color:${d.c}">Solution${src}</div><div class="a">${c[2]}</div><div class="why">${c[3]}</div>${dk?`<div style="margin-top:12px">${drawDG(dk)}</div>`:""}</div>
   </div></div>
   <div class="btns"><button class="again" id="ag">Again</button><button class="know" id="kn">Got it ✓</button></div>
-  <p class="why" style="text-align:center;margin-top:8px">${deck.length} in this session · "Again" returns in 3 cards · "Got it" moves it up a level</p>`;
+  <p class="why" style="text-align:center;margin-top:8px">${deck.length} in this session · due cards first, then new ones · "Again" returns in 3 cards · "Got it" moves it up a level</p>`;
   document.getElementById("cd").onclick=e=>e.currentTarget.classList.toggle("flip");
   document.getElementById("ag").onclick=()=>{st[CK[i]]={l:0,t:Date.now()};save();deck.shift();deck.splice(Math.min(3,deck.length),0,i);render()};
-  document.getElementById("kn").onclick=()=>{st[CK[i]]={l:Math.min(lv(i)+1,4),t:Date.now()};save();deck.shift();render()};
+  document.getElementById("kn").onclick=()=>{st[CK[i]]={l:Math.min(lv(i)+1,5),t:Date.now()};save();deck.shift();render()};
 }
 
 buildFilters();build();
@@ -2390,7 +2494,9 @@ const MIG=[];
 [["On a broadcast segment, R1 priority 1 RID 1.1.1.1, R2 priority 1 RID 3.3.3.3, R3 priority 0 RID 9.9.9.9. Who becomes DR?","On a broadcast segment where all three routers start at the same time: R1 priority 1 RID 1.1.1.1, R2 priority 1 RID 3.3.3.3, R3 priority 0 RID 9.9.9.9. Who becomes DR?"],
  ["Which mask is the smallest that supports 60 hosts per subnet?","Which mask creates the smallest subnet that still supports 60 hosts?"],
  ["Which WPA3 feature replaces the PSK 4-way handshake to resist offline dictionary attacks?","Which WPA3 feature replaces the PSK-based key exchange to resist offline dictionary attacks?"],
- ["A client is caught brute-forcing the PSK. With defaults, how long is it excluded?","On an AireOS WLC, a client is caught brute-forcing the PSK. With defaults, how long is it excluded?"]].forEach(([o,n])=>{const a="q"+hsh(o),b="q"+hsh(n);if(a in qh&&!(b in qh)){qh[b]=qh[a];delete qh[a]}MIG.push([a,b])});
+ ["A client is caught brute-forcing the PSK. With defaults, how long is it excluded?","On an AireOS WLC, a client is caught brute-forcing the PSK. With defaults, how long is it excluded?"],
+ ["Config: hostname R1 ; ip domain-name lab.local ; crypto key generate rsa modulus 2048 ; username admin secret Adm1n! ; line vty 0 15 ; transport input ssh. SSH connects but fails with 'Password required, but none set'. Which line is missing?", "Config: hostname R1 ; ip domain-name lab.local ; crypto key generate rsa modulus 2048 ; username admin secret Adm1n! ; line vty 0 15 ; transport input ssh. SSH connects, but every login attempt fails. Which line is missing?"],
+ ["Config: router ospf 1 ; passive-interface default ; network 10.0.0.0 0.255.255.255 area 0. R1 forms no neighbor on g0/1 toward R2. Which line is missing?", "Config: router ospf 1 ; passive-interface default ; network 10.0.0.0 0.255.255.255 area 0. R1's g0/1 is 10.1.12.1/30 and forms no neighbor toward R2. Which line is missing?"]].forEach(([o,n])=>{const a="q"+hsh(o),b="q"+hsh(n);if(a in qh&&!(b in qh)){qh[b]=qh[a];delete qh[a]}MIG.push([a,b])});
 let ql={};try{ql=JSON.parse(localStorage.getItem("ccna11-ql")||"{}")}catch(e){}
 MIG.forEach(([a,b])=>{if(a in ql&&!(b in ql)){ql[b]=ql[a];delete ql[a]}});
 let mh=[];try{mh=JSON.parse(localStorage.getItem("ccna11-mock")||"[]")}catch(e){}
@@ -2561,6 +2667,18 @@ readiness();coverage();
 {const h=location.hash.slice(1);if(h&&h!="map"&&document.getElementById("v-"+h))show(h)}
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(document.getElementById("v-"+h)&&!document.getElementById("v-"+h).classList.contains("on"))show(h)});
 {const cl=document.getElementById("clink");if(cl)cl.onclick=e=>{e.preventDefault();show("day");const d=document.getElementById("changelog");if(d){d.open=true;setTimeout(()=>{const y=d.getBoundingClientRect().top+window.scrollY-70;window.scrollTo(0,y)},60)}}}
+// ---- progress backup: copy everything stored under ccna11-* as text, paste it on another device
+{const KEYS=["ccna11-cards","ccna11-qh","ccna11-ql","ccna11-mock"],ta=document.getElementById("bkta"),msg=document.getElementById("bkmsg");
+ const say=t=>{if(msg)msg.textContent=t};
+ const ex=document.getElementById("bkex");if(ex)ex.onclick=()=>{const o={v:1,saved:new Date().toISOString()};KEYS.forEach(k=>{try{const v=localStorage.getItem(k);if(v)o[k]=JSON.parse(v)}catch(e){}});
+   ta.value=btoa(unescape(encodeURIComponent(JSON.stringify(o))));ta.select();
+   try{navigator.clipboard.writeText(ta.value).then(()=>say("Copied. Paste it somewhere safe, or into this box on another device."),()=>say("Select the text and copy it."))}catch(e){say("Select the text and copy it.")}};
+ const im=document.getElementById("bkim");if(im)im.onclick=()=>{let o;try{o=JSON.parse(decodeURIComponent(escape(atob(ta.value.trim()))))}catch(e){say("That text isn't a valid backup.");return}
+   if(!o||o.v!==1){say("That text isn't a valid backup.");return}
+   if(!confirm("Replace the progress in this browser with the backup from "+(o.saved||"?").slice(0,10)+"?"))return;
+   try{KEYS.forEach(k=>{if(o[k]!==undefined)localStorage.setItem(k,JSON.stringify(o[k]));else localStorage.removeItem(k)})}catch(e){say("This browser blocks storage, so the backup can't be restored here.");return}
+   say("Restored. Reloading…");setTimeout(()=>location.reload(),400)}}
+
 
 </script>
 </body>
