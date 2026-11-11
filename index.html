@@ -152,7 +152,7 @@ header{padding:8px 16px 6px} header .slim{display:block} header .hfull{display:n
 </head>
 <body data-v="map">
 <header>
-  <div class="slim">CCNA 200-301 <span>v1.1</span> · Last Minute <small>· r4.5.3</small></div>
+  <div class="slim">CCNA 200-301 <span>v1.1</span> · Last Minute <small>· r4.5.4</small></div>
 </header>
 <nav><div class="in">
   <button data-v="map" class="on"><span class="ic">🗺️</span> <span class="lg">Overview</span><span class="sh">Map</span></button>
@@ -164,7 +164,7 @@ header{padding:8px 16px 6px} header .slim{display:block} header .hfull{display:n
 </div></nav>
 <main>
 <section class="view on" id="v-map">
-  <div class="ovinfo"><b>For CCNA 200-301 v1.1 only</b> · last date to test v1.1: 2 Feb 2027<br><span>Blueprint-aligned diagrams, trigger cards, scenario quiz and numbers · release 4.5.3 · 11 Nov 2026 · <a href="#" id="clink">changelog</a></span></div>
+  <div class="ovinfo"><b>For CCNA 200-301 v1.1 only</b> · last date to test v1.1: 2 Feb 2027<br><span>Blueprint-aligned diagrams, trigger cards, scenario quiz and numbers · release 4.5.4 · 11 Nov 2026 · <a href="#" id="clink">changelog</a></span></div>
   <p class="hint">Exam domain weights from the official v1.1 blueprint. Tap a domain to study only its cards. Deep dives with diagrams are below. Source tags: <b>OCG1/OCG2</b> = Official Cert Guide Vol 1/2, 2nd ed · <b>31D</b> = 31 Days Before Your CCNA Exam · <b>CRAM</b> = Exam Cram · <b>NL</b> = NetworkLessons · <b>INE</b> = INE Exam Review · <b>BP</b> = Cisco blueprint</p>
   <div id="domains"></div>
 
@@ -968,6 +968,33 @@ Client: gets an IP from the WLAN's VLAN</pre></div>
 }</div>
     <div class="mn" style="margin-top:8px">Keys always in "double quotes" · pairs separated by commas · no trailing comma · whitespace doesn't matter</div>
   </details>
+  <details class="sec" id="backup"><summary>💾 Back up or move your progress <span class="src">cards · quiz · mocks</span></summary>
+    <p class="why">Progress is stored only in this browser. Export it to keep a copy or to continue on another device, then paste it here and import.</p>
+    <textarea id="bkta" rows="4" style="width:100%;box-sizing:border-box;background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px;font:12px 'JetBrains Mono',monospace" placeholder="Your backup text appears here, or paste one to import"></textarea>
+    <div style="display:flex;gap:8px;margin-top:8px"><button class="reset" id="bkex" style="flex:1">Export</button><button class="reset" id="bkim" style="flex:1">Import</button></div>
+    <p class="why" id="bkmsg" style="margin-top:6px"></p>
+  </details>
+  <details class="sec" id="changelog"><summary>📝 Changelog <span class="src">release 4.5.4</span></summary>
+    <div class="lsa">
+      <b>Release 4.5.4<br>11 Nov 2026</b><span>"Back up or move your progress" and the Changelog moved from the Exam day tab to the bottom of the Overview. The changelog link now opens it there.</span>
+      <b>Release 4.5.3<br>11 Nov 2026</b><span>Config in quiz questions is shown as a CLI block, one command per line with sub-mode indentation, instead of one line separated by ";". 14 questions converted; long config lines wrap inside the box on phones. Saved progress carries over.</span>
+      <b>Release 4.5.2<br>11 Nov 2026</b><span>The same one-line header on every tab, Overview included, so the tab bar never moves. The v1.1 notice, release number and changelog link are now at the top of the Overview content.</span>
+      <b>Release 4.5.1<br>11 Nov 2026</b><span>Desktop: the page no longer shifts sideways when switching between long tabs (Overview, Numbers, Exam day) and short ones (Cards, Quiz, Search); the scrollbar space is always reserved.</span>
+      <b>Release 4.5<br>11 Nov 2026</b><span>Compact phone layout: the full header shows only on Overview (other tabs get a one-line title), short tab labels with icons so all six tabs fit, and quiz mode / domain and card domain as drop-downs instead of chip rows on narrow screens.</span>
+      <b>Release 4.4.3<br>11 Nov 2026</b><span>Reset, Clear list, Reset my quiz score and Import now confirm by tapping the button twice. Pop-up confirmations are blocked inside claude.ai, which made these buttons do nothing.</span>
+      <b>Release 4.4.2<br>11 Nov 2026</b><span>Reset buttons: "↺ Reset" on Trigger cards (resets the cards in the selected domain), "Clear list" in Retry wrong, and "Reset my quiz score" on the Overview now also empties Retry wrong. Each asks you to tap twice.</span>
+      <b>Release 4.4.1<br>11 Nov 2026</b><span>Removed the due badge from the menu so the tab bar stays compact; the due count is shown in the Trigger cards header.</span>
+      <b>Release 4.4<br>11 Nov 2026</b><span>Fixes from the audit of the 4.3 questions: show ip static route is a real command (distractor replaced), SSH login question describes the symptom instead of a Telnet message, OSPF passive-interface question gives the interface address, DAI checks the IP-to-MAC pair, clearer syslog threshold wording, corrected trunk-encapsulation explanation.</span>
+      <b>Release 4.3<br>11 Nov 2026</b><span>25 IP Connectivity cards. 52 new questions: more Network Access (wireless, management access), exhibits for IP Services, Security and Automation, 16 "spot the missing line" config questions, and every objective at 6+ questions. Cards: due cards first, a due counter, longer review intervals (up to 21 days). Progress backup: export/import on the Exam day tab.</span>
+      <b>Release 4.2<br>11 Nov 2026</b><span>Fixes from a full audit of all 386 questions: SAE wording (the 4-way handshake still runs), copy tftp: running-config merges, client exclusion per platform (AireOS 180 s / Catalyst 9800 60 s), clearer RADIUS, static-route, STP, Terraform and IPsec items, clearer subnetting generator wording.</span>
+      <b>Release 4.1<br>11 Nov 2026</b><span>Scope stated as CCNA 200-301 v1.1 only (no other exam versions mentioned). Changelog link in the header now opens this list.</span>
+      <b>Release 4<br>11 Nov 2026</b><span>Fixes from three external audits, each checked against Cisco docs and the books: PoE table separates IEEE and Cisco names (no 99 W), WLC limits per platform (AireOS 512 / Catalyst 9800 4096), OSPF config (bandwidth value, priority not on point-to-point), PVST+ native-VLAN blocking, LACP passive/passive, BCP 38 filtering, TCP header 20–60 B, 403 vs 401, clearer syslog, STP, DR-election and subnet-mask questions. Mock exam review now marks your wrong picks. Web-checked facts: v1.1 last test date, exam facts, WPA3 ciphers (CCMP-128 / GCMP-256), 6 GHz requires WPA3 or OWE, Cisco AI tools, Terraform/IBM. Version number and changelog added.</span>
+      <b>Release 3<br>8 Nov 2026</b><span>32 more IP Connectivity questions, Subnetting ∞ generator, every objective at 5+ questions, matching/order/multi-select formats, why-the-others-are-wrong for the 50 hardest questions, screen-reader labels for diagrams.</span>
+      <b>Release 2<br>7 Nov 2026</b><span>24 configure + verify blocks (SNMP, syslog, DNS, TFTP/FTP, AAA added), 50 diagrams.</span>
+      <b>Release 1<br>7 Nov 2026</b><span>First release: blueprint map, cards, quiz, numbers and exam-day tab, fact-checked against the project books.</span>
+    </div>
+    <p class="why">Saved progress carries over between releases; reworded questions are migrated automatically.</p>
+  </details>
 </section>
 
 <section class="view" id="v-cards">
@@ -1223,32 +1250,6 @@ Client: gets an IP from the WLAN's VLAN</pre></div>
       <b>Puppet / Chef</b><span>Dropped in v1.1. Expect Ansible and Terraform.</span>
     </div>
   </div>
-  <details class="sec" id="backup"><summary>💾 Back up or move your progress <span class="src">cards · quiz · mocks</span></summary>
-    <p class="why">Progress is stored only in this browser. Export it to keep a copy or to continue on another device, then paste it here and import.</p>
-    <textarea id="bkta" rows="4" style="width:100%;box-sizing:border-box;background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px;font:12px 'JetBrains Mono',monospace" placeholder="Your backup text appears here, or paste one to import"></textarea>
-    <div style="display:flex;gap:8px;margin-top:8px"><button class="reset" id="bkex" style="flex:1">Export</button><button class="reset" id="bkim" style="flex:1">Import</button></div>
-    <p class="why" id="bkmsg" style="margin-top:6px"></p>
-  </details>
-  <details class="sec" id="changelog"><summary>📝 Changelog <span class="src">release 4.5.3</span></summary>
-    <div class="lsa">
-      <b>Release 4.5.3<br>11 Nov 2026</b><span>Config in quiz questions is shown as a CLI block, one command per line with sub-mode indentation, instead of one line separated by ";". 14 questions converted; long config lines wrap inside the box on phones. Saved progress carries over.</span>
-      <b>Release 4.5.2<br>11 Nov 2026</b><span>The same one-line header on every tab, Overview included, so the tab bar never moves. The v1.1 notice, release number and changelog link are now at the top of the Overview content.</span>
-      <b>Release 4.5.1<br>11 Nov 2026</b><span>Desktop: the page no longer shifts sideways when switching between long tabs (Overview, Numbers, Exam day) and short ones (Cards, Quiz, Search); the scrollbar space is always reserved.</span>
-      <b>Release 4.5<br>11 Nov 2026</b><span>Compact phone layout: the full header shows only on Overview (other tabs get a one-line title), short tab labels with icons so all six tabs fit, and quiz mode / domain and card domain as drop-downs instead of chip rows on narrow screens.</span>
-      <b>Release 4.4.3<br>11 Nov 2026</b><span>Reset, Clear list, Reset my quiz score and Import now confirm by tapping the button twice. Pop-up confirmations are blocked inside claude.ai, which made these buttons do nothing.</span>
-      <b>Release 4.4.2<br>11 Nov 2026</b><span>Reset buttons: "↺ Reset" on Trigger cards (resets the cards in the selected domain), "Clear list" in Retry wrong, and "Reset my quiz score" on the Overview now also empties Retry wrong. Each asks you to tap twice.</span>
-      <b>Release 4.4.1<br>11 Nov 2026</b><span>Removed the due badge from the menu so the tab bar stays compact; the due count is shown in the Trigger cards header.</span>
-      <b>Release 4.4<br>11 Nov 2026</b><span>Fixes from the audit of the 4.3 questions: show ip static route is a real command (distractor replaced), SSH login question describes the symptom instead of a Telnet message, OSPF passive-interface question gives the interface address, DAI checks the IP-to-MAC pair, clearer syslog threshold wording, corrected trunk-encapsulation explanation.</span>
-      <b>Release 4.3<br>11 Nov 2026</b><span>25 IP Connectivity cards. 52 new questions: more Network Access (wireless, management access), exhibits for IP Services, Security and Automation, 16 "spot the missing line" config questions, and every objective at 6+ questions. Cards: due cards first, a due counter, longer review intervals (up to 21 days). Progress backup: export/import on the Exam day tab.</span>
-      <b>Release 4.2<br>11 Nov 2026</b><span>Fixes from a full audit of all 386 questions: SAE wording (the 4-way handshake still runs), copy tftp: running-config merges, client exclusion per platform (AireOS 180 s / Catalyst 9800 60 s), clearer RADIUS, static-route, STP, Terraform and IPsec items, clearer subnetting generator wording.</span>
-      <b>Release 4.1<br>11 Nov 2026</b><span>Scope stated as CCNA 200-301 v1.1 only (no other exam versions mentioned). Changelog link in the header now opens this list.</span>
-      <b>Release 4<br>11 Nov 2026</b><span>Fixes from three external audits, each checked against Cisco docs and the books: PoE table separates IEEE and Cisco names (no 99 W), WLC limits per platform (AireOS 512 / Catalyst 9800 4096), OSPF config (bandwidth value, priority not on point-to-point), PVST+ native-VLAN blocking, LACP passive/passive, BCP 38 filtering, TCP header 20–60 B, 403 vs 401, clearer syslog, STP, DR-election and subnet-mask questions. Mock exam review now marks your wrong picks. Web-checked facts: v1.1 last test date, exam facts, WPA3 ciphers (CCMP-128 / GCMP-256), 6 GHz requires WPA3 or OWE, Cisco AI tools, Terraform/IBM. Version number and changelog added.</span>
-      <b>Release 3<br>8 Nov 2026</b><span>32 more IP Connectivity questions, Subnetting ∞ generator, every objective at 5+ questions, matching/order/multi-select formats, why-the-others-are-wrong for the 50 hardest questions, screen-reader labels for diagrams.</span>
-      <b>Release 2<br>7 Nov 2026</b><span>24 configure + verify blocks (SNMP, syslog, DNS, TFTP/FTP, AAA added), 50 diagrams.</span>
-      <b>Release 1<br>7 Nov 2026</b><span>First release: blueprint map, cards, quiz, numbers and exam-day tab, fact-checked against the project books.</span>
-    </div>
-    <p class="why">Saved progress carries over between releases; reworded questions are migrated automatically.</p>
-  </details>
 </section>
 
 </main>
@@ -2729,7 +2730,7 @@ qFilters();qStart();
 readiness();coverage();
 {const h=location.hash.slice(1);if(h&&h!="map"&&document.getElementById("v-"+h))show(h)}
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(document.getElementById("v-"+h)&&!document.getElementById("v-"+h).classList.contains("on"))show(h)});
-{const cl=document.getElementById("clink");if(cl)cl.onclick=e=>{e.preventDefault();show("day");const d=document.getElementById("changelog");if(d){d.open=true;setTimeout(()=>{const y=d.getBoundingClientRect().top+window.scrollY-70;window.scrollTo(0,y)},60)}}}
+{const cl=document.getElementById("clink");if(cl)cl.onclick=e=>{e.preventDefault();show("map");const d=document.getElementById("changelog");if(d){d.open=true;setTimeout(()=>{const y=d.getBoundingClientRect().top+window.scrollY-70;window.scrollTo(0,y)},60)}}}
 // ---- progress backup: copy everything stored under ccna11-* as text, paste it on another device
 {const KEYS=["ccna11-cards","ccna11-qh","ccna11-ql","ccna11-mock"],ta=document.getElementById("bkta"),msg=document.getElementById("bkmsg");
  const say=t=>{if(msg)msg.textContent=t};
