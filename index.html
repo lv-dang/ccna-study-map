@@ -152,7 +152,7 @@ header{padding:8px 16px 6px} header .slim{display:block} header .hfull{display:n
 </head>
 <body data-v="map">
 <header>
-  <div class="slim">CCNA 200-301 <span>v1.1</span> · Last Minute <small>· r4.5.4</small></div>
+  <div class="slim">CCNA 200-301 <span>v1.1</span> · Last Minute <small>· r4.6.1</small></div>
 </header>
 <nav><div class="in">
   <button data-v="map" class="on"><span class="ic">🗺️</span> <span class="lg">Overview</span><span class="sh">Map</span></button>
@@ -164,14 +164,14 @@ header{padding:8px 16px 6px} header .slim{display:block} header .hfull{display:n
 </div></nav>
 <main>
 <section class="view on" id="v-map">
-  <div class="ovinfo"><b>For CCNA 200-301 v1.1 only</b> · last date to test v1.1: 2 Feb 2027<br><span>Blueprint-aligned diagrams, trigger cards, scenario quiz and numbers · release 4.5.4 · 11 Nov 2026 · <a href="#" id="clink">changelog</a></span></div>
+  <div class="ovinfo"><b>For CCNA 200-301 v1.1 only</b> · last date to test v1.1: 2 Feb 2027<br><span>Blueprint-aligned diagrams, trigger cards, scenario quiz and numbers · release 4.6.1 · 12 Nov 2026 · <a href="#" id="clink">changelog</a></span></div>
   <p class="hint">Exam domain weights from the official v1.1 blueprint. Tap a domain to study only its cards. Deep dives with diagrams are below. Source tags: <b>OCG1/OCG2</b> = Official Cert Guide Vol 1/2, 2nd ed · <b>31D</b> = 31 Days Before Your CCNA Exam · <b>CRAM</b> = Exam Cram · <b>NL</b> = NetworkLessons · <b>INE</b> = INE Exam Review · <b>BP</b> = Cisco blueprint</p>
   <div id="domains"></div>
 
   <details class="sec ready" open><summary>🎯 Am I ready to pass? <span class="src">blueprint v1.1</span></summary>
-    <p class="why" style="margin-top:0">Cisco publishes the 120-minute length and the domain weights, but not the question count or the cut score. Third-party sources say about 100–120 questions and a pass mark around 800–850 of 1000. Those are <b>estimates</b>. So the targets below are a coverage plan, not a guarantee:</p>
+    <p class="why" style="margin-top:0">Cisco publishes the 120-minute length and the domain weights, but not the question count or the cut score. Third-party sources quote a pass mark around 800–850 of 1000. Those are <b>estimates</b>. So the targets below are a coverage plan, not a guarantee:</p>
     <div class="lsa">
-      <b>Expected</b><span>≈110 questions × weight ÷ sub-objectives: about 1.7 per sub-objective in Fundamentals, 2.4 in Access, <b>5.5 in IP Connectivity</b>, 1.2 in Services, 1.7 in Security, 1.6 in Automation.</span>
+      <b>Expected</b><span>Questions follow the domain weights, so per sub-objective <b>IP Connectivity</b> (25 % over 5 sub-objectives) gets by far the most, and IP Services and Automation (10 % each) the fewest. Labs focus on the configure-and-verify topics.</span>
       <b>Quiz ≥220</b><span>About two full exams of unique questions, at least 5 per sub-objective (3 for the 10 % domains), more for IP Connectivity. Includes <b>show-output exhibits</b> and <b>matching</b> items like the real exam.</span>
       <b>Cards ≥249</b><span>At least 5 facts per sub-objective (4 for IP Services and Automation).</span>
       <b>Visuals ≥53</b><span>At least one diagram or table per blueprint sub-objective.</span>
@@ -190,7 +190,7 @@ header{padding:8px 16px 6px} header .slim{display:block} header .hfull{display:n
       <b>"standard / open"</b><span>VRRP, LLDP, LACP, 802.1X, RADIUS. Not HSRP, GLBP, CDP, PAgP, TACACS+.</span>
       <b>"Choose two"</b><span>Both must be true on their own. Eliminate anything with a wrong port, wrong default or wrong layer.</span>
       <b>Show output</b><span>Read the codes first: [AD/metric], O IA / O E2, SU/RU, (s), FWD/BLK, DR/BDR/DROTHER.</span>
-      <b>Labs (sims)</b><span>Config tasks are usually VLANs, trunks, EtherChannel, static/OSPF, NAT, ACLs, SSH, port security. Save with copy run start if asked.</span>
+      <b>Labs (sims)</b><span>Config tasks are usually VLANs, trunks, EtherChannel, static/OSPF, NAT, ACLs, SSH, port security. Graded per subtask on the end result (show commands), with partial credit. Save with copy run start if asked.</span>
     </div>
   </div>
 
@@ -974,8 +974,10 @@ Client: gets an IP from the WLAN's VLAN</pre></div>
     <div style="display:flex;gap:8px;margin-top:8px"><button class="reset" id="bkex" style="flex:1">Export</button><button class="reset" id="bkim" style="flex:1">Import</button></div>
     <p class="why" id="bkmsg" style="margin-top:6px"></p>
   </details>
-  <details class="sec" id="changelog"><summary>📝 Changelog <span class="src">release 4.5.4</span></summary>
+  <details class="sec" id="changelog"><summary>📝 Changelog <span class="src">release 4.6.1</span></summary>
     <div class="lsa">
+      <b>Release 4.6.1<br>12 Nov 2026</b><span>Exam facts no longer give question or lab counts or a lab share of the score; they list the item types (multiple choice, drag-and-drop, labs) instead.</span>
+      <b>Release 4.6<br>12 Nov 2026</b><span>Lab details added to the exam facts: subtasks with partial credit (about 8–10 points each), graded on the end result via show commands, failing all labs fails the exam, 5–7 min per lab. Exam-day pace and the lab tip adjusted to match.</span>
       <b>Release 4.5.4<br>11 Nov 2026</b><span>"Back up or move your progress" and the Changelog moved from the Exam day tab to the bottom of the Overview. The changelog link now opens it there.</span>
       <b>Release 4.5.3<br>11 Nov 2026</b><span>Config in quiz questions is shown as a CLI block, one command per line with sub-mode indentation, instead of one line separated by ";". 14 questions converted; long config lines wrap inside the box on phones. Saved progress carries over.</span>
       <b>Release 4.5.2<br>11 Nov 2026</b><span>The same one-line header on every tab, Overview included, so the tab bar never moves. The v1.1 notice, release number and changelog link are now at the top of the Overview content.</span>
@@ -1148,17 +1150,18 @@ Client: gets an IP from the WLAN's VLAN</pre></div>
     <div class="lsa">
       <b>Version</b><span>This map covers <b>CCNA 200-301 v1.1</b> only. Last date to test v1.1: <b>2 Feb 2027</b>, so book before then.</span>
       <b>Format</b><span>120 minutes · US$300 plus tax, or Cisco Learning Credits · English or Japanese · Pearson VUE, test center or online.</span>
-      <b>Items</b><span>Multiple choice (single and multiple answer), drag-and-drop, and simulations/labs.</span>
+      <b>Items</b><span>Multiple-choice questions (single and multiple answer), drag-and-drop questions, and labs (simulations).</span>
+      <b>Labs</b><span>One lab is worth several questions. Each lab has subtasks worth about 8–10 points (per Cisco's exam video), with partial credit. Each subtask is graded on its <b>end result</b>, checked in the background with show commands, not on how you got there. <b>Failing every lab means failing the exam.</b> You can change a lab's font size and color.</span>
       <b>Passing score</b><span>Cisco doesn't publish it; about 825/1000 is often quoted (unofficial).</span>
       <b>Validity</b><span>3 years. Recertify by passing the exam again, passing a higher-level exam, or with 30 Continuing Education credits.</span>
     </div>
-    <p class="why">Commands follow Cisco IOS / IOS XE; WLC items follow the books (AireOS and Catalyst 9800) and say which. Sources: cisco.com CCNA exam page and Cisco Learning Network, checked 8 Nov 2026. Confirm price and dates on cisco.com before booking.</p>
+    <p class="why">Commands follow Cisco IOS / IOS XE; WLC items follow the books (AireOS and Catalyst 9800) and say which. Sources: cisco.com CCNA exam page and Cisco Learning Network, checked 8 Nov 2026. Lab grading details come from Cisco's exam video and course notes. Confirm price and dates on cisco.com before booking.</p>
   </div>
   <div class="sec tip"><h3>⏱ Exam-day plan</h3>
     <div class="lsa">
-      <b>Pace</b><span>120 minutes. Cisco doesn't publish the count; expect roughly 100–120 items, so about <b>1 min</b> per normal question and save time for labs. Check the clock at the halfway mark.</span>
+      <b>Pace</b><span>120 minutes. Budget <b>5–7 min per lab</b> and keep a steady pace on the questions so the labs aren't rushed. Check the clock at the halfway mark.</span>
       <b>No going back</b><span>You normally can't return to earlier questions. Decide, then move on.</span>
-      <b>Labs first-read</b><span>Read every task before typing. Verify with show commands. Save with copy run start if the task says so.</span>
+      <b>Labs</b><span>Read every subtask before typing. Each subtask is scored on its end state, so finish the ones you can for partial credit. Verify each with show commands, since that's how they're checked. Save with copy run start if the task says so. Don't skip labs: failing all of them fails the exam.</span>
       <b>Subnetting</b><span>Write the block-size row (128 64 32 16 8 4) on your whiteboard at the start.</span>
       <b>Eliminate</b><span>Drop answers with a wrong port, wrong default or wrong layer, then compare what's left.</span>
     </div>
