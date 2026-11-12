@@ -981,7 +981,7 @@ Client: gets an IP from the WLAN's VLAN</pre></div>
       <b>Release 4.5.2<br>11 Nov 2026</b><span>The same one-line header on every tab, Overview included, so the tab bar never moves. The v1.1 notice, release number and changelog link are now at the top of the Overview content.</span>
       <b>Release 4.5.1<br>11 Nov 2026</b><span>Desktop: the page no longer shifts sideways when switching between long tabs (Overview, Numbers, Exam day) and short ones (Cards, Quiz, Search); the scrollbar space is always reserved.</span>
       <b>Release 4.5<br>11 Nov 2026</b><span>Compact phone layout: the full header shows only on Overview (other tabs get a one-line title), short tab labels with icons so all six tabs fit, and quiz mode / domain and card domain as drop-downs instead of chip rows on narrow screens.</span>
-      <b>Release 4.4.3<br>11 Nov 2026</b><span>Reset, Clear list, Reset my quiz score and Import now confirm by tapping the button twice. Pop-up confirmations are blocked inside claude.ai, which made these buttons do nothing.</span>
+      <b>Release 4.4.3<br>11 Nov 2026</b><span>Reset, Clear list, Reset my quiz score and Import now confirm by tapping the button twice. Some browsers and embedded views block pop-up confirmations, which made these buttons do nothing.</span>
       <b>Release 4.4.2<br>11 Nov 2026</b><span>Reset buttons: "↺ Reset" on Trigger cards (resets the cards in the selected domain), "Clear list" in Retry wrong, and "Reset my quiz score" on the Overview now also empties Retry wrong. Each asks you to tap twice.</span>
       <b>Release 4.4.1<br>11 Nov 2026</b><span>Removed the due badge from the menu so the tab bar stays compact; the due count is shown in the Trigger cards header.</span>
       <b>Release 4.4<br>11 Nov 2026</b><span>Fixes from the audit of the 4.3 questions: show ip static route is a real command (distractor replaced), SSH login question describes the symptom instead of a Telnet message, OSPF passive-interface question gives the interface address, DAI checks the IP-to-MAC pair, clearer syslog threshold wording, corrected trunk-encapsulation explanation.</span>
@@ -2526,7 +2526,7 @@ function render(){
 }
 
 buildFilters();build();
-// Two-tap confirm: pop-up dialogs are blocked inside the claude.ai artifact sandbox.
+// Two-tap confirm: some embedded views block pop-up dialogs.
 function arm(b,msg,fn){if(b.dataset.armed){clearTimeout(b._t);delete b.dataset.armed;b.innerHTML=b.dataset.lbl;b.style.background="";fn();return}
   b.dataset.lbl=b.innerHTML;b.dataset.armed=1;b.innerHTML=msg;b.style.background="var(--bad)";b._t=setTimeout(()=>{delete b.dataset.armed;b.innerHTML=b.dataset.lbl;b.style.background=""},4000)}
 let qh={};try{qh=JSON.parse(localStorage.getItem("ccna11-qh")||"{}")}catch(e){}
