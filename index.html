@@ -152,7 +152,7 @@ header{padding:8px 16px 6px} header .slim{display:block} header .hfull{display:n
 </head>
 <body data-v="map">
 <header>
-  <div class="slim">CCNA 200-301 <span>v1.1</span> · Last Minute <small>· r4.6.1</small></div>
+  <div class="slim">CCNA 200-301 <span>v1.1</span> · Last Minute <small>· r4.7.2</small></div>
 </header>
 <nav><div class="in">
   <button data-v="map" class="on"><span class="ic">🗺️</span> <span class="lg">Overview</span><span class="sh">Map</span></button>
@@ -164,7 +164,7 @@ header{padding:8px 16px 6px} header .slim{display:block} header .hfull{display:n
 </div></nav>
 <main>
 <section class="view on" id="v-map">
-  <div class="ovinfo"><b>For CCNA 200-301 v1.1 only</b> · last date to test v1.1: 2 Feb 2027<br><span>Blueprint-aligned diagrams, trigger cards, scenario quiz and numbers · release 4.6.1 · 12 Nov 2026 · <a href="#" id="clink">changelog</a></span></div>
+  <div class="ovinfo"><b>For CCNA 200-301 v1.1 only</b> · last date to test v1.1: 2 Feb 2027<br><span>Blueprint-aligned diagrams, trigger cards, scenario quiz and numbers · release 4.7.2 · 12 Nov 2026 · <a href="#" id="clink">changelog</a></span></div>
   <p class="hint">Exam domain weights from the official v1.1 blueprint. Tap a domain to study only its cards. Deep dives with diagrams are below. Source tags: <b>OCG1/OCG2</b> = Official Cert Guide Vol 1/2, 2nd ed · <b>31D</b> = 31 Days Before Your CCNA Exam · <b>CRAM</b> = Exam Cram · <b>NL</b> = NetworkLessons · <b>INE</b> = INE Exam Review · <b>BP</b> = Cisco blueprint</p>
   <div id="domains"></div>
 
@@ -974,8 +974,11 @@ Client: gets an IP from the WLAN's VLAN</pre></div>
     <div style="display:flex;gap:8px;margin-top:8px"><button class="reset" id="bkex" style="flex:1">Export</button><button class="reset" id="bkim" style="flex:1">Import</button></div>
     <p class="why" id="bkmsg" style="margin-top:6px"></p>
   </details>
-  <details class="sec" id="changelog"><summary>📝 Changelog <span class="src">release 4.6.1</span></summary>
+  <details class="sec" id="changelog"><summary>📝 Changelog <span class="src">release 4.7.2</span></summary>
     <div class="lsa">
+      <b>Release 4.7.2<br>12 Nov 2026</b><span>Practice mode: single-answer questions are graded on tap; choose-N, matching and ordering questions stay changeable until you tap Check answer (it appears once the answer is complete).</span>
+      <b>Release 4.7.1<br>12 Nov 2026</b><span>Practice mode has no Check answer button: a question is graded as soon as the answer is complete (one tap for single-answer, the last pick for choose-N, matching and ordering). Mock exams keep answers changeable until Next.</span>
+      <b>Release 4.7<br>12 Nov 2026</b><span>Quiz answers can be changed until you confirm them: pick an option (or change it), then tap Check answer. In a mock exam the answer is locked in when you tap Next. Applies to single-answer, choose-N, matching and ordering questions.</span>
       <b>Release 4.6.1<br>12 Nov 2026</b><span>Exam facts no longer give question or lab counts or a lab share of the score; they list the item types (multiple choice, drag-and-drop, labs) instead.</span>
       <b>Release 4.6<br>12 Nov 2026</b><span>Lab details added to the exam facts: subtasks with partial credit (about 8–10 points each), graded on the end result via show commands, failing all labs fails the exam, 5–7 min per lab. Exam-day pace and the lab tip adjusted to match.</span>
       <b>Release 4.5.4<br>11 Nov 2026</b><span>"Back up or move your progress" and the Changelog moved from the Exam day tab to the bottom of the Overview. The changelog link now opens it there.</span>
@@ -2616,24 +2619,34 @@ function quiz(){
   if(t=="match"){const R=shuf([...new Set(q[2].map(p=>p[1]))]);opts=shuf(q[2].map((p,j)=>({l:p[0],r:p[1]})));body=opts.map((o,k)=>`<div class="mrow"><span>${o.l}</span><select data-k="${k}"><option value="">choose…</option>${R.map(r=>`<option>${r}</option>`).join("")}</select></div>`).join("")}
   else if(t=="order"){opts=shuf(q[2].map((o,j)=>({o,j})));body=`<div id="ordsel" class="mn" style="min-height:24px;margin-bottom:10px;font-family:Inter">Your order: <span style="color:var(--mute)">tap below</span></div>`+opts.map((o,k)=>`<button class="opt" data-k="${k}">${o.o}</button>`).join("")+`<button class="reset" id="undo" style="margin-bottom:8px">Undo</button>`}
   else{opts=shuf(q[2].map((o,j)=>({o,ok:t=="single"?j==q[3]:q[3].includes(j)})));body=opts.map((o,k)=>`<button class="opt" data-k="${k}">${t=="multi"?"☐ ":""}${o.o}</button>`).join("")}
-  box.innerHTML=head+`<div class="scen">${q[1]}</div>${dq}${tag}${body}${t!="single"?`<button class="next" id="chk" style="display:${t=="multi"||t=="match"?"block":"none"}">Check answer</button>`:""}<div id="qx" class="why" style="display:none;background:var(--panel2);border-radius:12px;padding:12px;margin:4px 0 6px"></div><button class="next" id="nx">${mock&&qi==qorder.length-1?"Finish exam":"Next →"}</button>`;
-  const btns=[...box.querySelectorAll(".opt")];let done=false,sel=[];
-  const finish=(ok,resp)=>{done=true;if(mock){mock.ans[id]=ok;mock.sel[id]=resp;record(id,ok);document.getElementById("nx").style.display="block";const c=document.getElementById("chk");if(c)c.style.display="none";btns.forEach(b=>b.disabled=true);return}
+  box.innerHTML=head+`<div class="scen">${q[1]}</div>${dq}${tag}${body}<button class="next" id="chk" style="display:none">Check answer</button><div id="qx" class="why" style="display:none;background:var(--panel2);border-radius:12px;padding:12px;margin:4px 0 6px"></div><button class="next" id="nx">${mock&&qi==qorder.length-1?"Finish exam":"Next →"}</button>`;
+  // Practice: single-answer grades on tap, other types use Check answer. Mock exam: changeable until Next.
+  const btns=[...box.querySelectorAll(".opt")],chk=document.getElementById("chk"),nx=document.getElementById("nx");let done=false,sel=[];
+  let ready=()=>false,grade=()=>[false,null];
+  const refresh=()=>{if(done)return;const r=ready();if(mock)nx.style.display=r?"block":"none";else if(t=="single"){if(r){const [ok,resp]=grade();finish(ok,resp)}}else chk.style.display=r?"block":"none"};
+  const finish=(ok,resp)=>{done=true;btns.forEach(b=>b.disabled=true);box.querySelectorAll(".mrow select").forEach(x=>x.disabled=true);const u=document.getElementById("undo");if(u)u.style.display="none";chk.style.display="none";
+    if(mock){mock.ans[id]=ok;mock.sel[id]=resp;record(id,ok);return}
     qn++;if(ok)qr++;if(id>=0)record(id,ok);upd();
     const x=document.getElementById("qx");x.innerHTML=`<b style="color:${ok?"var(--ok)":"var(--bad)"}">${ok?"Correct.":"Not quite."}</b> ${t!="single"?`<div style="margin:6px 0"><b>Answer:</b> ${qanswer(q)}</div>`:""}${q[4]}${(qDiag(q)||[])[0]=="e"?`<div style="margin-top:10px">${drawDG(qDiag(q)[1])}</div>`:""}`;x.style.display="block";
-    const c=document.getElementById("chk");if(c)c.style.display="none";document.getElementById("nx").style.display="block"};
-  if(t=="single")btns.forEach((b,k)=>b.onclick=()=>{if(done)return;const ok=opts[k].ok;if(mock){b.classList.add("sel")}else{if(!ok)b.classList.add("w");btns[opts.findIndex(o=>o.ok)].classList.add("r")}finish(ok,[opts[k].o])});
-  if(t=="multi"){btns.forEach((b,k)=>b.onclick=()=>{if(done)return;if(sel.includes(k)){sel=sel.filter(x=>x!=k);b.classList.remove("sel");b.textContent="☐ "+opts[k].o}else if(sel.length<q[3].length){sel.push(k);b.classList.add("sel");b.textContent="☑ "+opts[k].o}});
-    document.getElementById("chk").onclick=()=>{if(done||sel.length!=q[3].length)return;const ok=sel.every(k=>opts[k].ok);
-      if(!mock)btns.forEach((b,k)=>{if(opts[k].ok)b.classList.add("r");else if(sel.includes(k))b.classList.add("w")});finish(ok,sel.map(k=>opts[k].o))}}
-  if(t=="match"){const sels=[...box.querySelectorAll(".mrow select")];document.getElementById("chk").onclick=()=>{if(done||sels.some(x=>!x.value))return;const okk=sels.map((x,k)=>x.value==opts[k].r);
-    sels.forEach((x,k)=>{x.disabled=true;if(!mock)x.style.borderColor=okk[k]?"var(--ok)":"var(--bad)"});finish(okk.every(Boolean),sels.map((x,k)=>[opts[k].l,x.value,opts[k].r]))}}
+    nx.style.display="block"};
+  if(t=="single"){btns.forEach((b,k)=>b.onclick=()=>{if(done)return;sel=[k];btns.forEach((x,j)=>x.classList.toggle("sel",j==k));refresh()});
+    ready=()=>sel.length==1;
+    grade=()=>{const k=sel[0],ok=opts[k].ok;if(!mock){btns[k].classList.remove("sel");if(!ok)btns[k].classList.add("w");btns[opts.findIndex(o=>o.ok)].classList.add("r")}return [ok,[opts[k].o]]}}
+  if(t=="multi"){btns.forEach((b,k)=>b.onclick=()=>{if(done)return;if(sel.includes(k)){sel=sel.filter(x=>x!=k);b.classList.remove("sel");b.textContent="☐ "+opts[k].o}else if(sel.length<q[3].length){sel.push(k);b.classList.add("sel");b.textContent="☑ "+opts[k].o}refresh()});
+    ready=()=>sel.length==q[3].length;
+    grade=()=>{const ok=sel.every(k=>opts[k].ok);if(!mock)btns.forEach((b,k)=>{b.classList.remove("sel");if(opts[k].ok)b.classList.add("r");else if(sel.includes(k))b.classList.add("w")});return [ok,sel.map(k=>opts[k].o)]}}
+  if(t=="match"){const sels=[...box.querySelectorAll(".mrow select")];sels.forEach(x=>x.onchange=refresh);
+    ready=()=>sels.every(x=>x.value);
+    grade=()=>{const okk=sels.map((x,k)=>x.value==opts[k].r);if(!mock)sels.forEach((x,k)=>x.style.borderColor=okk[k]?"var(--ok)":"var(--bad)");return [okk.every(Boolean),sels.map((x,k)=>[opts[k].l,x.value,opts[k].r])]}}
   if(t=="order"){const show=()=>{document.getElementById("ordsel").innerHTML="Your order: "+(sel.length?sel.map((k,n)=>`<b>${n+1}.</b> ${opts[k].o}`).join(" → "):'<span style="color:var(--mute)">tap below</span>');
-      btns.forEach((b,k)=>b.style.opacity=sel.includes(k)?.35:1);document.getElementById("chk").style.display=sel.length==q[2].length&&!done?"block":"none"};
+      btns.forEach((b,k)=>b.style.opacity=sel.includes(k)?.35:1);refresh()};
     btns.forEach((b,k)=>b.onclick=()=>{if(done||sel.includes(k))return;sel.push(k);show()});
     document.getElementById("undo").onclick=()=>{if(done)return;sel.pop();show()};
-    document.getElementById("chk").onclick=()=>{if(done)return;const ok=sel.every((k,n)=>opts[k].j==n);finish(ok,sel.map(k=>opts[k].o));document.getElementById("undo").style.display="none"}}
-  document.getElementById("nx").onclick=()=>{qi++;quiz();document.getElementById("v-quiz").scrollIntoView()};
+    ready=()=>sel.length==q[2].length;
+    grade=()=>[sel.every((k,n)=>opts[k].j==n),sel.map(k=>opts[k].o)]}
+  chk.onclick=()=>{if(done||!ready())return;const [ok,resp]=grade();finish(ok,resp)};
+  nx.onclick=()=>{if(mock&&!done){if(!ready())return;const [ok,resp]=grade();finish(ok,resp)}qi++;quiz();document.getElementById("v-quiz").scrollIntoView()};
+  refresh();
 }
 // Final mock review: shows the candidate's own picks next to the key.
 function reviewHTML(q,r){const t=qtype(q),R='color:var(--bad)',G='color:var(--ok)';
